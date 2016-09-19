@@ -29,6 +29,20 @@ test('abc test', () => {
 });
 ```
 
+### XUnit XML report
+
+```js
+const assert = require('assert');
+const Tests = require('gas-unit');
+const t = new Tests('xunit'); // use xunit reporter.
+const test = t.test.bind(t);
+
+global.run = function run() {
+  t.runAll();
+  return t.reporter.result;
+}
+```
+
 ## Example
 
 Demo can be found in the [example](https://github.com/fossamagna/gas-test/tree/master/example) directory.

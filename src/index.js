@@ -1,12 +1,13 @@
 'use strict';
 
-const LogReporter = require('./reporter/log-reporter');
+const reporters = require('./reporters');
 const Test = require('./test');
 
 class Tests {
-  constructor() {
+  constructor(reporter) {
     this.tests = [];
-    this.reporter = new LogReporter();
+    const Reporter = reporters[reporter] || reporters.logger;
+    this.reporter = new Reporter();
   }
 
   runAll() {

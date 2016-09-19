@@ -1,7 +1,7 @@
 'use strict';
 
 /* global Logger */
-class LogReporter {
+class LoggerReporter {
   start() {
     Logger.log('start');
   }
@@ -22,4 +22,4 @@ class LogReporter {
   }
 }
 
-module.exports = LogReporter;
+module.exports = LoggerReporter;
