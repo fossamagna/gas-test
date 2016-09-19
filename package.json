@@ -1,0 +1,26 @@
+{
+  "name": "gas-test",
+  "version": "0.1.0",
+  "description": "Simple test framework for Google Apps Script",
+  "main": "dist/index.js",
+  "devDependencies": {
+    "babel-cli": "6.14.0",
+    "babel-preset-es2015": "6.14.0",
+    "eslint": "3.5.0"
+  },
+  "repository": "fossamagna/gas-test",
+  "scripts": {
+    "test": "eslint src",
+    "prepublish": "babel src -d dist"
+  },
+  "keywords": [
+    "test",
+    "Google Apps Script"
+  ],
+  "author": {
+    "name": "fossamagna",
+    "email": "fossamagna2@gmail.com",
+    "url": "https://github.com/fossamagna"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+{
+  "scriptId": "<YOUR_SCRIPT_ID_FOR_TEST>",
+  "scopes": ["https://www.googleapis.com/auth/drive"],
+  "resource": {
+    "function": "run",
+    "parameters": [],
+    "devMode": true
+  }
+}

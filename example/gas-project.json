@@ -1,0 +1,11 @@
+{
+  "src": {
+    "fileId": "<YOUR_SCRIPT_ID_FOR_TEST>",
+    "files": {
+      "Code": {
+        "path": "dist/test.js",
+        "type": "server_js"
+      }
+    }
+  }
+}
