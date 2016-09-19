@@ -31,7 +31,7 @@ test('abc test', () => {
 
 ## Example
 
-Demo can be found in the [example](https://github.com/fossamagna/gas-test/tree/master/examples) directory.
+Demo can be found in the [example](https://github.com/fossamagna/gas-test/tree/master/example) directory.
 
 ## License
 
