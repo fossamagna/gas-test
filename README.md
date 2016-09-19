@@ -1,4 +1,4 @@
-# gas-test
+# gas-test [![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url]
 
 > Simple test framework for Google Apps Script
 
@@ -50,3 +50,8 @@ Demo can be found in the [example](https://github.com/fossamagna/gas-test/tree/m
 ## License
 
 MIT © [fossamagna](https://github.com/fossamagna)
+
+[npm-image]: https://badge.fury.io/js/gas-test.svg
+[npm-url]: https://npmjs.org/package/gas-test
+[travis-image]: https://travis-ci.org/fossamagna/gas-test.svg?branch=master
+[travis-url]: https://travis-ci.org/fossamagna/gas-test
