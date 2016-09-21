@@ -53,7 +53,7 @@ class JUnitXmlReporter {
     root.setAttribute('tests', stats.tests);
     root.setAttribute('failures', stats.failures);
     root.setAttribute('failures', stats.failures);
-    root.setAttribute('timestamp', (new Date()).toUTCString());
+    root.setAttribute('timestamp', (new Date()).toISOString());
     root.setAttribute('time', (stats.duration / 1000) || 0);
     this.results.forEach(result => {
       const child = this.createTestCaseElement(result);
