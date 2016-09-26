@@ -1,7 +1,8 @@
 'use strict';
 
 class Test {
-  constructor(title, testFunction) {
+  constructor(suite, title, testFunction) {
+    this.suite = suite;
     this.title = title;
     this.testFunction = testFunction;
   }

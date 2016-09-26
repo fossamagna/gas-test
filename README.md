@@ -17,15 +17,18 @@ app.js:
 const assert = require('assert');
 const Tests = require('gas-unit');
 const t = new Tests();
+const suite = t.suite.bind(t);
 const test = t.test.bind(t);
 
 global.run = function run() {
   t.runAll();
 }
 
-test('abc test', () => {
-  // assertion false
-  assert.equal('abc', 'abx');
+suite('abc test suite', () => {
+  test('abc test', () => {
+    // assertion false
+    assert.equal('abc', 'abx');
+  });
 });
 ```
 
@@ -35,6 +38,7 @@ test('abc test', () => {
 const assert = require('assert');
 const Tests = require('gas-unit');
 const t = new Tests('xunit'); // use xunit reporter.
+const suite = t.suite.bind(t);
 const test = t.test.bind(t);
 
 global.run = function run() {

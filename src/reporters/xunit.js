@@ -49,9 +49,8 @@ class JUnitXmlReporter {
     stats.duration = new Date().getTime() - stats.start;
     // build XML
     const root = XmlService.createElement('testsuite');
-    root.setAttribute('tests', 'gas-test');
+    root.setAttribute('name', 'gas-test');
     root.setAttribute('tests', stats.tests);
-    root.setAttribute('failures', stats.failures);
     root.setAttribute('failures', stats.failures);
     root.setAttribute('timestamp', (new Date()).toISOString());
     root.setAttribute('time', (stats.duration / 1000) || 0);
@@ -66,8 +65,10 @@ class JUnitXmlReporter {
 
   createTestCaseElement(result) {
     const stats = result;
-    const child = XmlService.createElement('testcase').setAttribute('name', result.test.title);
-    child.setAttribute('time', (stats.duration / 1000) || 0);
+    const child = XmlService.createElement('testcase')
+    .setAttribute('name', result.test.title)
+    .setAttribute('classname', result.test.suite.title)
+    .setAttribute('time', (stats.duration / 1000) || 0);
     if (result.failure) {
       const failure = XmlService.createElement('failure');
       if (result.error) {
