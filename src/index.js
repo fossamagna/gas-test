@@ -7,13 +7,21 @@ class Tests {
   constructor(reporter) {
     this.suites = [];
     const Reporter = reporters[reporter] || reporters.logger;
-    this.reporter = new Reporter();
+    this._reporter = new Reporter();
+  }
+
+  reporter(reporter) {
+    if (arguments.length) {
+      const Reporter = reporters[reporter] || reporters.logger;
+      this._reporter = new Reporter();
+    }
+    return this._reporter;
   }
 
   runAll() {
-    this.reporter.start();
-    this.suites.forEach(suite => suite.run(this.reporter));
-    this.reporter.end();
+    this._reporter.start();
+    this.suites.forEach(suite => suite.run(this._reporter));
+    this._reporter.end();
   }
 
   test(title, fn) {
