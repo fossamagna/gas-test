@@ -1,52 +1,17 @@
 'use strict';
 
+const BaseReporter = require('./base');
+
 /* global Logger XmlService */
 /* eslint no-unused-vars: 0 */
-class JUnitXmlReporter {
+class JUnitXmlReporter extends BaseReporter {
   constructor() {
-    this._init();
-  }
-
-  _init() {
-    this.stats = { tests: 0, passes: 0, failures: 0 };
-    this.results = [];
-    this.result = null;
-  }
-
-  start() {
-    this._init();
-    this.stats.start = new Date().getTime();
-  }
-
-  testStart(test) {
-    this.stats.tests++;
-    const result = new Result();
-    result.test = test;
-    result.start = new Date().getTime();
-    this.results.push(result);
-  }
-
-  pass(test) {
-    this.stats.passes++;
-  }
-
-  fail(test, error) {
-    this.stats.failures++;
-    const result = this.results[this.results.length - 1];
-    result.error = error;
-    result.failure = true;
-  }
-
-  testEnd(test) {
-    const result = this.results[this.results.length - 1];
-    result.end = new Date().getTime();
-    result.duration = new Date().getTime() - result.start;
+    super();
   }
 
   end() {
+    super.end();
     const stats = this.stats;
-    stats.end = new Date().getTime();
-    stats.duration = new Date().getTime() - stats.start;
     // build XML
     const root = XmlService.createElement('testsuite');
     root.setAttribute('name', 'gas-test');
@@ -74,14 +39,7 @@ class JUnitXmlReporter {
       if (result.error) {
         const error = result.error;
         failure.setAttribute('type', error.constructor.name);
-        let m = '';
-        if (error.message) {
-          m += error.message;
-        }
-        Logger.log(error);
-        if (error.stack) {
-          m += error.stack;
-        }
+        const m = this.createErrorMessage(result.error);
         if (m) {
           const text = XmlService.createText(m);
           failure.addContent(text);
@@ -91,13 +49,19 @@ class JUnitXmlReporter {
     }
     return child;
   }
-}
 
-class Result {
-  constructor() {
-    this.test;
-    this.error;
-    this.failure;
+  createErrorMessage(error) {
+    if (!error) {
+      return undefined;
+    }
+    let m = '';
+    if (error.message) {
+      m += error.message;
+    }
+    if (error.stack) {
+      m += error.stack;
+    }
+    return m ? m : undefined;
   }
 }
 
