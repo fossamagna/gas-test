@@ -4,9 +4,9 @@
   "description": "Simple test framework for Google Apps Script",
   "main": "dist/index.js",
   "devDependencies": {
-    "babel-cli": "6.14.0",
-    "babel-preset-es2015": "6.14.0",
-    "eslint": "3.5.0"
+    "babel-cli": "6.24.1",
+    "babel-preset-es2015": "6.24.1",
+    "eslint": "3.19.0"
   },
   "repository": "fossamagna/gas-test",
   "scripts": {
