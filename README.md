@@ -1,5 +1,7 @@
 # gas-test [![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fossamagna/gas-test.svg)](https://greenkeeper.io/)
+
 > Simple test framework for Google Apps Script
 
 ## Installation
