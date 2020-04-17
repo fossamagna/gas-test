@@ -11,6 +11,6 @@ const reporters = {
 
 export type ReporterType = 'xunit' | 'logger' | 'json';
 
-export function getReporter(type: ReporterType) {
-  return new (reporters[type] || LoggerReporter) as BaseReporter<any>;
+export function getReporter(type?: ReporterType) {
+  return new (type && reporters[type] || LoggerReporter) as BaseReporter<any>;
 }

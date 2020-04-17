@@ -5,13 +5,13 @@ import BaseReporter from './reporters/base';
 export default class Tests {
   private suites: Suite[];
   private _reporter!: BaseReporter<{}>;
-  constructor(reporter: ReporterType) {
+  constructor(reporter?: ReporterType) {
     this.suites = [];
     this._reporter = getReporter(reporter);
   }
 
-  reporter(reporter: ReporterType) {
-    if (arguments.length) {
+  reporter(reporter?: ReporterType) {
+    if (reporter) {
       this._reporter = getReporter(reporter);
     }
     return this._reporter;
