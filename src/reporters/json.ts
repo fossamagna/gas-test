@@ -1,9 +1,27 @@
-'use strict';
+import BaseReporter, { Result, Stats, GASError } from './base';
 
-const BaseReporter = require('./base');
+type JsonReporterResult = {
+  stats: Stats;
+  results: JsonResult[];
+}
+
+type JsonResult = {
+  name: string;
+  title: string;
+  duration: number;
+  failure: boolean;
+  error?: JsonResultError;
+}
+
+type JsonResultError = {
+  message: string;
+  actual: any;
+  expected: any;
+  stack: any;
+}
 
 /* eslint no-unused-vars: 0 */
-class JsonReporter extends BaseReporter {
+export default class JsonReporter extends BaseReporter<JsonReporterResult> {
   constructor() {
     super();
   }
@@ -18,8 +36,8 @@ class JsonReporter extends BaseReporter {
     this.result = json;
   }
 
-  createResult(result) {
-    const createError = error => {
+  createResult(result: Result): JsonResult {
+    const createError = (error?: GASError) => {
       if (!error) {
         return undefined;
       }
@@ -40,5 +58,3 @@ class JsonReporter extends BaseReporter {
     };
   }
 }
-
-module.exports = JsonReporter;

@@ -1,11 +1,11 @@
 {
   "name": "gas-test-sample",
   "version": "0.1.0",
-  "description": "gas-test sample",
+  "description": "gas-test + TypeScript sample",
   "scripts": {
     "initialize": "mkdirp dist",
     "clean": "rimraf dist",
-    "build": "browserify index.js -t babelify -p gasify --debug -o ./dist/test.js",
+    "build": "browserify index.ts -p tsify -p gasify --debug -o ./dist/test.js",
     "upload": "gas upload",
     "deploy": "npm-run-all clean initialize build upload",
     "pretest": "npm-run-all deploy",
@@ -17,15 +17,16 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/assert": "^1.4.6",
+    "@types/google-apps-script": "^1.0.12",
     "assert": "1.4.1",
-    "babel": "6.1.18",
-    "babel-preset-es2015": "6.1.18",
-    "babelify": "7.2.0",
     "browserify": "12.0.1",
     "gas-manager": "0.4.3",
     "gasify": "0.1.0",
     "mkdirp": "0.5.1",
     "npm-run-all": "1.3.4",
-    "rimraf": "2.4.4"
+    "rimraf": "2.4.4",
+    "tsify": "^4.0.1",
+    "typescript": "^3.8.3"
   }
 }

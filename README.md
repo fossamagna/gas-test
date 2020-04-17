@@ -2,6 +2,8 @@
 
 > Simple test framework for Google Apps Script
 
+gas-test is test framework running on Google Apps Script runtime.
+
 ## Installation
 
 First, install gas-test using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).

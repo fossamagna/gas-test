@@ -1,10 +1,9 @@
-'use strict';
+import BaseReporter, { Result } from './base';
 
-const BaseReporter = require('./base');
+export type JUnitXMLReportResult = string;
 
-/* global Logger XmlService */
 /* eslint no-unused-vars: 0 */
-class JUnitXmlReporter extends BaseReporter {
+export default class JUnitXmlReporter extends BaseReporter<JUnitXMLReportResult> {
   constructor() {
     super();
   }
@@ -15,10 +14,10 @@ class JUnitXmlReporter extends BaseReporter {
     // build XML
     const root = XmlService.createElement('testsuite');
     root.setAttribute('name', 'gas-test');
-    root.setAttribute('tests', stats.tests);
-    root.setAttribute('failures', stats.failures);
+    root.setAttribute('tests', stats.tests.toString());
+    root.setAttribute('failures', stats.failures.toString());
     root.setAttribute('timestamp', (new Date()).toISOString());
-    root.setAttribute('time', (stats.duration / 1000) || 0);
+    root.setAttribute('time', (stats.duration && (stats.duration / 1000) || 0).toString());
     this.results.forEach(result => {
       const child = this.createTestCaseElement(result);
       root.addContent(child);
@@ -28,17 +27,17 @@ class JUnitXmlReporter extends BaseReporter {
     this.result = junitXml;
   }
 
-  createTestCaseElement(result) {
+  createTestCaseElement(result: Result) {
     const stats = result;
     const child = XmlService.createElement('testcase')
-    .setAttribute('name', result.test.title)
-    .setAttribute('classname', result.test.suite.title)
-    .setAttribute('time', (stats.duration / 1000) || 0);
+      .setAttribute('name', result.test.title)
+      .setAttribute('classname', result.test.suite.title)
+      .setAttribute('time', (stats.duration && (stats.duration / 1000) || 0).toString());
     if (result.failure) {
       const failure = XmlService.createElement('failure');
       if (result.error) {
         const error = result.error;
-        failure.setAttribute('type', error.constructor.name);
+        failure.setAttribute('type', error.name);
         const m = this.createErrorMessage(result.error);
         if (m) {
           const text = XmlService.createText(m);
@@ -50,7 +49,7 @@ class JUnitXmlReporter extends BaseReporter {
     return child;
   }
 
-  createErrorMessage(error) {
+  createErrorMessage(error: Error) {
     if (!error) {
       return undefined;
     }
@@ -65,4 +64,3 @@ class JUnitXmlReporter extends BaseReporter {
   }
 }
 
-module.exports = JUnitXmlReporter;
