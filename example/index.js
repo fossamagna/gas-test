@@ -1,9 +1,10 @@
 'use strict';
 
-const assert = require('assert');
-const Tests  = require('../src');
+import assert from 'assert';
+import Tests from '../dist';
 const t = new Tests();
 const test = t.test.bind(t);
+const suite = t.suite.bind(t);
 
 /*global global*/
 
@@ -17,6 +18,8 @@ global.run = function() {
   t.runAll();
 };
 
-test('abc test', () => {
-  assert.equal('abc', 'abc');
+suite('sample texst', () => {
+  test('abc test', () => {
+    assert.equal('abc', 'abc');
+  });
 });

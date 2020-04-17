@@ -1,20 +1,20 @@
-'use strict';
+import Test from '../test';
+import { GASError } from './base';
 
-/* global Logger */
-class LoggerReporter {
+export default class LoggerReporter {
   start() {
     Logger.log('start');
   }
-  testStart(test) {
+  testStart(test: Test) {
     Logger.log(`start: ${test.title}`);
   }
-  pass(test) {
+  pass(test: Test) {
     Logger.log(`Pass: ${test.title}`);
   }
-  fail(test, error) {
+  fail(test: Test, error: GASError) {
     Logger.log(`Failed: ${test.title}, ${error}`);
   }
-  testEnd(test) {
+  testEnd(test: Test) {
     Logger.log(`end: ${test.title}`);
   }
   end() {
@@ -22,4 +22,3 @@ class LoggerReporter {
   }
 }
 
-module.exports = LoggerReporter;
