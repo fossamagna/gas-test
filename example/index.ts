@@ -6,8 +6,6 @@ const t = new Tests();
 const test = t.test.bind(t);
 const suite = t.suite.bind(t);
 
-/*global global*/
-
 /**
  * Run all test cases.
  * This method is supposed to called via Execution API.
