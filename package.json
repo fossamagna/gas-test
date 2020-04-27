@@ -15,7 +15,7 @@
   "scripts": {
     "test": "eslint ./src --ext .ts",
     "build": "tsc",
-    "prepublish": "tsc"
+    "prepare": "tsc"
   },
   "keywords": [
     "test",
